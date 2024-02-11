@@ -2,12 +2,9 @@ import { CompositeRequestBuilder } from './CompositeRequestBuilder';
 import { SalesForceAPIController } from 'src/api/controllers/SalesForceAPI.controller';
 import { APIRequestContext } from '@playwright/test';
 import {
-  DefaultAccountBody,
-  DefaultContactBody,
-  DefaultCaseBody,
-  DefaultGuidelineBody,
-  SObjectType,
   CompositeResponse,
+  SObjectType,
+  DefaultBody
 } from 'src/types/types.data';
 
 export class CompositeRequestHandler {
@@ -36,11 +33,7 @@ export class CompositeRequestHandler {
   }
   addPOSTSubrequest(
     recordType: SObjectType,
-    body:
-      | DefaultAccountBody
-      | DefaultContactBody
-      | DefaultCaseBody
-      | DefaultGuidelineBody,
+    body: DefaultBody,
     refId: string
   ) {
     this.compositeRequestBuilder.addSubrequest('POST', {
@@ -55,11 +48,7 @@ export class CompositeRequestHandler {
   addPATCHSubrequest(
     recordType: SObjectType,
     recordId: string,
-    body:
-      | DefaultAccountBody
-      | DefaultContactBody
-      | DefaultCaseBody
-      | DefaultGuidelineBody,
+    body: DefaultBody,
     refId: string
   ) {
     this.compositeRequestBuilder.addSubrequest('PATCH', {
@@ -73,11 +62,7 @@ export class CompositeRequestHandler {
 
   addPUTSubrequest(
     recordType: SObjectType,
-    body:
-      | DefaultAccountBody
-      | DefaultContactBody
-      | DefaultCaseBody
-      | DefaultGuidelineBody,
+    body: DefaultBody,
     refId: string
   ) {
     this.compositeRequestBuilder.addSubrequest('PUT', {

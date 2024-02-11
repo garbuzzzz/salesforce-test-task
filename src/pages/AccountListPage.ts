@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Page, Locator } from '@playwright/test';
 import Navigation from 'src/support/Navigation';
 import { EnvPropsProvider } from 'src/support/EnvPropsProvider';
@@ -27,7 +26,6 @@ export default class AccountListPage {
   }
 
   async openNewAccountForm() {
-    await this.navigation.navigateToAccountListPage();
     await this.newButton.waitFor({
       state: 'visible',
       timeout: EnvPropsProvider.getDefaultTimeouts()._15sec,

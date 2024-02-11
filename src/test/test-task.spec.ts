@@ -25,10 +25,12 @@ test.describe('Feature: Test task', () => {
   });
 
   test('Create a new account', async () => {
+    await navigation.navigateToAccountListPage();
     await accountListPage.createNewAccount(prefix + '_' + randomstring.generate(10));
   });
 
   test('Verify account name is required while creating account', async () => {
+    await navigation.navigateToAccountListPage();
     await accountListPage.openNewAccountForm();
     await accountEditPage.save();
     await accountEditPage.verifyValidationErrorDisplays('We hit a snag.');

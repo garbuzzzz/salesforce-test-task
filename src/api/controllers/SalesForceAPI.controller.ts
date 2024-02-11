@@ -2,12 +2,12 @@ import { Controller } from './Controller';
 import { APIRequestContext } from '@playwright/test';
 import { SalesForceOAuth2Response } from '../../types/types.auth';
 import {
-  SObjectType,
   IdStringResponse,
   SOQLResponse,
   SOSLResponse,
   CompositeResponse,
-  DefaultGuidelineBody,
+  DefaultBody,
+  SObjectType
 } from '../../types/types.data';
 import { LoginDataProvider } from 'src/support/LoginDataProvider';
 
@@ -52,7 +52,7 @@ export class SalesForceAPIController extends Controller {
   public async createRecord(
     authToken: string,
     recordType: string,
-    bodyData: DefaultGuidelineBody
+    bodyData: DefaultBody
   ) {
     return await this.context
       .post(`${this.baseUrl}/data/v55.0/sobjects/${recordType}`, {

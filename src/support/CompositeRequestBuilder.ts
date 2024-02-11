@@ -1,4 +1,4 @@
-import { RequestBody, CompositeRequestBody } from 'src/types/types.data';
+import { CompositeRequestBody, CompositeSubrequestMethod, BaseCompositeRequestItem } from 'src/types/types.data';
 
 export class CompositeRequestBuilder {
   private composite: CompositeRequestBody = {
@@ -16,7 +16,10 @@ export class CompositeRequestBuilder {
     return this;
   }
 
-  addSubrequest(method: string, subrequestBody: RequestBody) {
+  addSubrequest<
+    M extends CompositeSubrequestMethod,
+    T extends BaseCompositeRequestItem<M>
+  >(method: M, subrequestBody: T) {
     subrequestBody.method = method;
     this.composite.compositeRequest.push({
       ...subrequestBody,

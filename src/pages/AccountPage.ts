@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import Navigation from 'src/support/Navigation';
 import { EnvPropsProvider } from 'src/support/EnvPropsProvider';
 import AccountEditPage from './AccountEditPage';

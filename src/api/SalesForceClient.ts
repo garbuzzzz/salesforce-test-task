@@ -4,9 +4,6 @@ import {
   defaultAccountBody,
 } from 'src/support/DataFactoryStorage';
 import { CompositeRequestHandler } from 'src/support/CompositeRequestHandler';
-import randomstring from 'randomstring';
-
-const prefix = process.env.PREFIX as string;
 
 export class SalesForceClient {
   private readonly requestContext: APIRequestContext;
@@ -62,26 +59,6 @@ export class SalesForceClient {
         'AccountRef'
       );
     return accountId;
-  }
-
-  async seedCase(
-    accountId: string = process.env.accountId as string,
-    contactId: string = process.env.contactId as string
-  ) {
-    const caseBody = {
-      ContactId: contactId,
-      AccountID: accountId,
-      Subject: `${prefix}_Case_${randomstring.generate(10)}`,
-    };
-    const response = await this.compositeRequestHandler
-      .addPOSTSubrequest('Case', caseBody, 'CaseRef')
-      .sendCompositeRequest();
-    const caseId: string =
-      this.compositeRequestHandler.getNonNullRecordIdByReference(
-        response,
-        'CaseRef'
-      );
-    return caseId;
   }
 
   async getAppIdByDeveloperName(appDeveloperName: string) {

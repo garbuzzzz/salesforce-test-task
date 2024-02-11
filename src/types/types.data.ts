@@ -1,3 +1,5 @@
+export type SObjectType = 'Account' | 'Contact' | 'Case'
+
 export interface IdStringResponse {
   id: string;
 }
@@ -12,6 +14,9 @@ export interface SOSLResponse {
   searchRecords: QueryResponseRecordAttributes[];
 }
 
+export interface DefaultBody {
+  Name?: string
+}
 export interface QueryResponseRecordAttributes {
   attributes: {
     type: string;
@@ -21,14 +26,23 @@ export interface QueryResponseRecordAttributes {
   DurableId?: string;
 }
 
-export interface DefaultAccountBody {
-  Name: string | number;
-}
+export type CompositeSubrequestMethod =
+  | 'GET'
+  | 'POST'
+  | 'PATCH'
+  | 'PUT'
+  | 'DELETE';
 
 export interface CompositeRequestBody {
   allOrNone: boolean;
   collateSubrequests: boolean;
-  compositeRequest: object[];
+  compositeRequest: Array<BaseCompositeRequestItem<CompositeSubrequestMethod>>;
+}
+
+export interface BaseCompositeRequestItem<T extends CompositeSubrequestMethod> {
+  method: T;
+  url: string;
+  referenceId: string;
 }
 
 export interface CompositeResponse {
